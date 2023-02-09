@@ -1,0 +1,10 @@
+<div class="dropdown">
+    <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" data-hover="dropdown" data-animations="fadeIn fadeIn fadeIn fadeIn">
+        {{menu}}<span class="caret"></span>
+    </button>
+    {% for node in tree %}
+    {% if node.parent_id == None %}
+    {% include "navigation_drawnodes.html" with tree=tree parent_id=node.id%}
+    {% endif %}
+    {% endfor %}
+  </div>

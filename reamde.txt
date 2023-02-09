@@ -1,0 +1,33 @@
+план дерева:
+
+1) при создании (init) экземпляра NavigationMenu создание root связанного NavigationTree
+
+NavigationMenu:
+id name
+0  Main Menu
+1  About
+
+NavigationTree:
+id name rel_menu order link       parent_id
+0  root 0        0     #          None
+1  root 1        1     #          None
+2  Cat  0        0     /cat       0
+3  Pot  0        -5    /cat/pot   2
+4  Dog  0        3     /cat/dog   2
+
+NavTree(rel_menu)->NavMenu(id)
+
+1.5)Необязательно (сортировка):
+Вычисляемое поле deep: order в (group by deep, rel_menu) может быть от 0 до count(id)
+Order в каждой группе уникален, в админке задается через inline details NavMenu.
+
+
+
+2) Рекурсивное построение дерева:
+Определить deep всех элементов, пройтись по всем deep = 0 (parent_id = None):
+Для parent_id = None (id = 0,1) пройтись по всем веткам (parent_id = 0,1)
+и построить список со ссылками. Если у ветки есть подветки, пройтись по подветкам.
+
+
+
+
