@@ -8,7 +8,20 @@
 
 За основу взят учебный проект по Django от Mozilla - библиотека. На скриншоте два меню "main menu" и "About", реализованы через template tag.
 
-![image](https://user-images.githubusercontent.com/33355208/217703520-9710ede4-d198-468d-a328-358f6dd9d708.png)
+"main menu":
+
+![image](https://user-images.githubusercontent.com/33355208/217705460-83c00064-4d03-4a25-8d6e-0ad61dd64108.png)
+
+"About":
+
+![image](https://user-images.githubusercontent.com/33355208/217704237-294dc411-9553-412a-a13c-348071e88490.png)
+
+Файлы содержащие дерево: 
+- catalog/templates/navigation_tree.html 
+- catalog/templates/navigation_drawnodes.htmll 
+- catalog/models.py Модели: NavigationTree, NavigationMenu
+- catalog/templatetags/nav_menu.py
+
 
 Применены стили bootstrap (dropdown menu). Меню определяются по названию и настраиваются через админку. Там можно создать меню и дерево меню. Админка: admin/admin. 
 
@@ -24,9 +37,6 @@
 
 Не используются сторонние библиотеки, кроме django-debug для отладки.
 
-![image](https://user-images.githubusercontent.com/33355208/217704237-294dc411-9553-412a-a13c-348071e88490.png)
-
-
 Меню добавляется с помощью тегов:
 {% draw_menu "main menu" %}
 {% draw_menu "About" %}
@@ -34,3 +44,12 @@
 ![image](https://user-images.githubusercontent.com/33355208/217704568-6a0edf90-31d2-4652-854b-5a389bb1630b.png)
 
 Есть определенные проблемы с внешним видом - не сильно заморочено.
+
+
+В базе, NavigationMenu:
+![image](https://user-images.githubusercontent.com/33355208/217705198-5b2b4842-9439-4e98-9416-0a693d030466.png)
+
+NavigationTree:
+![image](https://user-images.githubusercontent.com/33355208/217705239-1b9cba24-709d-4750-9196-fc8cb18d26d3.png)
+
+Пункты тестового задания выполнены все кроме 5: Активный пункт меню определяется исходя из URL текущей страницы.
