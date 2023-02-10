@@ -149,6 +149,8 @@ class NavigationTree(models.Model):
         if self.name == "Root of " + self.nav_menu.name:
             self.parent = None
             super(NavigationTree, self).save(*args, **kwargs)    
+        else: super(NavigationTree, self).save(*args, **kwargs)
         parent_list = set(NavigationTree.objects.values_list('parent_id', flat=True))
         for node in NavigationTree.objects.all():
             if node.id in parent_list: NavigationTree.objects.filter(id=node.id).update(is_parent = True)
+            else: NavigationTree.objects.filter(id=node.id).update(is_parent = False)

@@ -1,10 +1,17 @@
-<div class="dropdown">
-    <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" data-hover="dropdown" data-animations="fadeIn fadeIn fadeIn fadeIn">
-        {{menu}}<span class="caret"></span>
-    </button>
+{% for root in tree %}
+{% if root.parent_id == None %}
     {% for node in tree %}
-    {% if node.parent_id == None %}
+    {% if node.parent_id == root.id and node.is_parent == False %}
+    <li class="btn btn-default dropdown-toggle"><a href="{{ node.link }}">{{node.name}}</a></li>
+    {% elif node.parent_id == root.id and node.is_parent == True %}
+    <div class="dropdown">
+        <a href = {{node.link}} class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" data-hover="dropdown" data-animations="fadeIn fadeIn fadeIn fadeIn">
+            {{node.name}}<span class="caret"></span>
+        </a>
     {% include "navigation_drawnodes.html" with tree=tree parent_id=node.id%}
+    </div>
     {% endif %}
     {% endfor %}
-  </div>
+{% endif %}
+{% endfor %}
+  
